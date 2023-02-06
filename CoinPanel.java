@@ -7,6 +7,8 @@ import javax.swing.SwingConstants;
 
 
 
+
+
 public class CoinPanel extends JPanel {
     private Coin coin;
     private ImageIcon headsIcon, tailsIcon;
@@ -14,8 +16,8 @@ public class CoinPanel extends JPanel {
 
     public CoinPanel(Coin coin){
         this.coin=coin;
-        headsIcon= new ImageIcon("add image path here idk how to do that.png");
-        tailsIcon= new ImageIcon("add image");
+        headsIcon= new ImageIcon("C:\\Users\\sarah\\OneDrive\\Desktop\\PracticeCoin\\Coin\\bin\\coins\\2019-america-the-beautiful-quarters-W-CourtesyUSMint.jpg");
+        tailsIcon= new ImageIcon("C:\\Users\\sarah\\OneDrive\\Desktop\\PracticeCoin\\Coin\\bin\\coins\\download.jfif");
         imgLabel=new JLabel("Coin Game", headsIcon, SwingConstants.CENTER);
         imgLabel.setHorizontalTextPosition(SwingConstants.CENTER);
         imgLabel.setVerticalTextPosition(SwingConstants.CENTER);
