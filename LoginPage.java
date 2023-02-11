@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,19 +12,24 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class LoginPage implements ActionListener{
+    Color c1 = new Color(255, 204, 51); 
+
     //setting up environment with labels and buttons
-    JFrame frame = new JFrame();
+    JFrame frame = new JFrame("The Millennium Casino");
     //creating and naming the buttons
     JButton loginButton = new JButton("Login");
     JButton resetButton = new JButton("Reset");
-
-    //create a text field 
+  
+    //create a text field where the user will type in
     JTextField userIDField = new JTextField();
     JPasswordField userPasswordField = new JPasswordField();
 
+    //adding a "Welcome to the casino JLabel"
+    JLabel welcomemsg = new JLabel("Welcome to the Millennium Casino!");
+
     //adding a label 
-    JLabel userIDLabel = new JLabel("userID:");
-    JLabel userPasswordLabel = new JLabel("password:");
+    JLabel userIDLabel = new JLabel("User ID:");
+    JLabel userPasswordLabel = new JLabel("Password:");
 
     //shows if login was successful or not
     JLabel messageLabel = new JLabel("");
@@ -33,40 +39,62 @@ public class LoginPage implements ActionListener{
     LoginPage(HashMap<String,String> loginInfoOriginal){
 
         logininfo = loginInfoOriginal;
-
         //setting bounds for the labels, text fields and buttons
-        userIDLabel.setBounds(50,50,75,25);
-        userPasswordLabel.setBounds(50,100,75,25);
+        //adding fonts and colors
+        
+        userIDLabel.setBounds(100,135,75,25);
+        userIDLabel.setFont(new Font(null, Font.BOLD,15));
+        userIDLabel.setForeground(Color.WHITE);
 
-        messageLabel.setBounds(125,250,250,35);
-        messageLabel.setFont(new Font(null,Font.ITALIC,25));
+        userPasswordLabel.setBounds(100,180,75,25);
+        userPasswordLabel.setFont(new Font(null, Font.BOLD,15));
+        userPasswordLabel.setForeground(Color.WHITE);
 
-        userIDField.setBounds(125,50,200,25);
-        userPasswordField.setBounds(125,100,200,25);
+        messageLabel.setBounds(125,230,250,35);
+        messageLabel.setFont(new Font(null,Font.ITALIC,18));
 
-        loginButton.setBounds(100,200,100,25);
+        userIDField.setBounds(180,135,150,25);
+        userPasswordField.setBounds(180,180,150,25);
+
+        loginButton.setBounds(120,270,100,25);
         loginButton.setFocusable(false);
         loginButton.addActionListener(this);
+        loginButton.setBackground(c1);
+        loginButton.setFont(new Font(null, Font.BOLD,12));
+        loginButton.setForeground(Color.BLACK);
 
-        resetButton.setBounds(200,200,100,25);
+        resetButton.setBounds(230,270,100,25);
         resetButton.setFocusable(false);
         resetButton.addActionListener((java.awt.event.ActionListener) this);
+        resetButton.setBackground(c1);
+        resetButton.setFont(new Font(null, Font.BOLD,12));
+        resetButton.setForeground(Color.BLACK);
         
-
+        welcomemsg.setBounds(40, 40, 350,30);
+        welcomemsg.setFont(new Font(null, Font.ITALIC | Font.BOLD,20));
+        Color c1 = new Color(255, 204, 51);  
+        welcomemsg.setForeground(c1);
         frame.add(userIDLabel);
         frame.add(userPasswordLabel);
         frame.add(messageLabel);
+        frame.add(welcomemsg);
+
         frame.add(userIDField);
         frame.add(userPasswordField);
         frame.add(loginButton);
         frame.add(resetButton);
+
+        frame.setBackground(Color.ORANGE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(420,420);
+
+        frame.setSize(450,450);
         frame.setLayout(null);
         frame.setVisible(true);
+        frame.getContentPane().setBackground(Color.BLACK);
+        //makes the window appear in the center
+        frame.setLocationRelativeTo(null); 
     
     }
-
 
 
     /* (non-Javadoc)
@@ -105,12 +133,11 @@ public class LoginPage implements ActionListener{
            }
            else {
             messageLabel.setForeground(Color.red);
-            messageLabel.setText("Username Not Found");
+            messageLabel.setText("Username Not Found!");
            }
         }
     }
 }
 
    
-
 
