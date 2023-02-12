@@ -5,8 +5,8 @@ public class IDandPasswords {
     HashMap<String,String> logininfo = new HashMap<String, String>();
     //create a constructor for id and passswords class
     IDandPasswords(){
-        logininfo.put("Sara","Dziobak");
-        logininfo.put("Elena","Nicko");
+        logininfo.put("Sara","hello");
+        logininfo.put("Elena","hi");
         logininfo.put("Bri","welcome");
         logininfo.put("Cam","bye");
     }
