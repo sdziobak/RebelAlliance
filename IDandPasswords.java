@@ -9,6 +9,7 @@ public class IDandPasswords {
         logininfo.put("Elena","hi");
         logininfo.put("Bri","welcome");
         logininfo.put("Cam","bye");
+        logininfo.put("Joe","password123");
     }
 
         //getter method in case any class requests it
