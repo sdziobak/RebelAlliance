@@ -168,7 +168,7 @@ public void actionPerformed (ActionEvent e) {
                     String username = UsernameField.getText();
 
                     if (password.equals(confirmpassword) && (username.isEmpty() == false || password.isEmpty() == false || confirmpassword.isEmpty() == false)) {
-                        //store dob and age
+                        //store user ID, password, dob, and age
 
                         frame.dispose();
                         IDandPasswords1 idandPasswords = new IDandPasswords1();
