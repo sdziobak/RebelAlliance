@@ -1,40 +1,53 @@
 package application;
 
-import java.util.*;
+import java.io.File;
+import java.util.Random;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import javafx.scene.text.Text; 
 
 public class CoinFlipFX extends Application{
 
-    private Button Flip;
+    private Button flipButton;
+    private Button headsButton;
+    private Button tailsButton;
     private FlowPane pane;
-    private Text outCome;
-
+    private Text outcomeText;
+    private TextField betAmount;
+    private ImageView coinImage;
+    private boolean userChoiceHeads;
 
     public void start(Stage primaryStage){
 
-       Flip = new Button("Flip the Coin!");
-       outCome = new Text("Welcome, Please Place Your Bet!");
+       flipButton = new Button("Flip the Coin!");
+       headsButton = new Button("Heads");
+       tailsButton = new Button("Tails");
+       outcomeText = new Text("Welcome, Please Place Your Bet!");
+       betAmount = new TextField();
+       betAmount.setPromptText("Enter Bet Amount");
+       coinImage = new ImageView();
 
-        Flip.setOnAction(this::processCoinFlip);
+        flipButton.setOnAction(this::processCoinFlip);
+        headsButton.setOnAction(this::chooseHeads);
+        tailsButton.setOnAction(this::chooseTails);
 
-        pane = new FlowPane(Flip, outCome);
+        pane = new FlowPane(headsButton, tailsButton, betAmount, flipButton, outcomeText, coinImage);
         pane.setAlignment(Pos.CENTER);
-		pane.setHgap(20);
-		pane.setStyle("-fx-background-color: white");
-
-
-        Scene scene = new Scene (pane, 600, 300);
+        pane.setHgap(20);
+        pane.setStyle("-fx-background-color: slategray");
+        Scene scene = new Scene (pane, 700, 500);
 
         primaryStage.setTitle("Coin Flip");
         primaryStage.setScene(scene);
-		primaryStage.show();
+        primaryStage.show();
 
 
     }
@@ -42,25 +55,43 @@ public class CoinFlipFX extends Application{
     public void processCoinFlip(ActionEvent event) {
 
         Random game = new Random();
-
-        int toss = game.nextInt(2) + 1; 
+        boolean coinIsHeads = game.nextBoolean();
         
-        if (toss == 1) { 
-
-            outCome.setText("Outcome is Heads");
+        if (coinIsHeads) { 
+            outcomeText.setText("Outcome is Heads");
             pane.setStyle("-fx-background-color: #097aeb");
+            File headsFile = new File("C:/Users/oconn/Desktop/heads.png");
+            Image headsImage = new Image(headsFile.toURI().toString());
+            coinImage.setImage(headsImage);
+            coinImage.setFitWidth(400);
+            coinImage.setFitHeight(400);
+        } else { 
+            outcomeText.setText("Outcome is Tails");
+            pane.setStyle("-fx-background-color: tomato");
+            File tailsFile = new File("C:/Users/oconn/Desktop/tails.png");
+            Image tailsImage = new Image(tailsFile.toURI().toString());
+            coinImage.setImage(tailsImage);
+            coinImage.setFitWidth(400);
+            coinImage.setFitHeight(400);
         }
-
-        else { 
-            outCome.setText("Outcome is Tails");
-            pane.setStyle("-fx-background-color: #93eda7");
+        
+        if (userChoiceHeads == coinIsHeads) {
+            outcomeText.setText(outcomeText.getText() + ". You won!");
+        } else {
+            outcomeText.setText(outcomeText.getText() + ". You lost.");
         }
 
     }
-
+    
+    public void chooseHeads(ActionEvent event) {
+        userChoiceHeads = true;
+    }
+    
+    public void chooseTails(ActionEvent event) {
+        userChoiceHeads = false;
+    }
 
     public static void main(String[] args) {
-       
          launch(args);
     }
 }
